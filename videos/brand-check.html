@@ -18,6 +18,7 @@
     font: 700 112px/1 var(--font-display);
     letter-spacing: -0.03em;
   }
+  h1 b { font-weight: inherit; }
   h1 span { color: var(--accent); }
 
   /* Color swatches */
@@ -50,8 +51,8 @@
 </head>
 <body>
 <div id="stage">
-  <div class="eyebrow" id="eyebrow">Motion Studio · Brand</div>
-  <h1 id="title">Brand check<span>.</span></h1>
+  <div class="eyebrow" id="eyebrow">Brand check</div>
+  <h1 id="title"><b id="brand-name"></b><span>.</span></h1>
 
   <div id="swatches">
     <div class="swatch" data-var="--bg"><div class="chip"></div><div class="name">Background</div><div class="hex"></div></div>
@@ -94,6 +95,8 @@
     s.querySelector('.chip').style.background = v;
     s.querySelector('.hex').textContent = v.toUpperCase();
   });
+  // Brand name from brand.css (strip the CSS string quotes).
+  $('#brand-name').textContent = root.getPropertyValue('--brand-name').trim().replace(/^["']|["']$/g, '');
   const specs = [...document.querySelectorAll('.spec')];
 
   const rise = (el, t, start, dist = 60, dur = 0.7) => {
