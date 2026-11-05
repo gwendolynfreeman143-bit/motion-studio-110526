@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../brand.css">
+<script src="../lib/motion.js"></script>
+<style>
+  #stage { width: 1920px; height: 1080px; display: grid; place-items: center; }
+  .line {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 132px;
+    letter-spacing: -0.03em;
+    display: flex;
+    gap: 0.28em;
+  }
+  .word { display: inline-block; will-change: transform, opacity; }
+  .word.accent { color: var(--accent); }
+  #bar {
+    position: absolute;
+    left: 50%; top: 640px;
+    height: 10px; width: 520px;
+    margin-left: -260px;
+    background: var(--accent);
+    border-radius: 5px;
+    transform-origin: left center;
+  }
+  #tag {
+    position: absolute; left: 0; right: 0; top: 690px;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 30px;
+    color: var(--muted);
+    letter-spacing: 0.2em;
+  }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="line">
+    <span class="word">Hello</span>
+    <span class="word">from</span>
+    <span class="word">my</span>
+    <span class="word accent">studio</span>
+  </div>
+  <div id="bar"></div>
+  <div id="tag">MOTION STUDIO · TEST 01</div>
+</div>
+<script>
+  window.DURATION = 3;
+  window.SIZE = [1920, 1080];
+
+  const { tween, ease } = window.motion;
+  const words = [...document.querySelectorAll('.word')];
+  const bar = document.getElementById('bar');
+  const tag = document.getElementById('tag');
+
+  window.render = (t) => {
+    // Words rise in, staggered.
+    words.forEach((w, i) => {
+      const s = 0.15 + i * 0.12;
+      const y = tween(t, s, s + 0.6, 90, 0, ease.outExpo);
+      const o = tween(t, s, s + 0.35, 0, 1);
+      w.style.transform = `translateY(${y}px)`;
+      w.style.opacity = o;
+    });
+    // Accent bar wipes in under the line.
+    bar.style.transform = `scaleX(${tween(t, 0.9, 1.5, 0, 1, ease.inOutCubic)})`;
+    // Tagline fades up.
+    tag.style.opacity = tween(t, 1.3, 1.8, 0, 1);
+    tag.style.transform = `translateY(${tween(t, 1.3, 1.8, 16, 0, ease.outCubic)}px)`;
+    // Gentle push-in for the whole frame.
+    document.getElementById('stage').style.transform =
+      `scale(${tween(t, 0, 3, 1, 1.04, ease.linear)})`;
+  };
+</script>
+</body>
+</html>

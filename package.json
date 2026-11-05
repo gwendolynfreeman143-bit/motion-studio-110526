@@ -1,0 +1,9 @@
+{
+  "name": "motion-studio",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "render": "node render.mjs",
+    "stills": "node render.mjs --stills 3"
+  }
+}

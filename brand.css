@@ -1,0 +1,37 @@
+/* Brand tokens — edit these to restyle every video. */
+:root {
+  /* Colors */
+  --bg: #0e0f13;
+  --surface: #1a1c23;
+  --ink: #f4f1ea;
+  --muted: #8a8d98;
+  --accent: #ff5a36;
+  --accent-2: #3d7bff;
+
+  /* Fonts (installed locally; fall back to system fonts elsewhere) */
+  --font-display: "Inter Display", "Inter", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+/* Shared frame setup: the stage fills the video exactly, nothing scrolls. */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Determinism: no CSS animations or transitions ever run. */
+*, *::before, *::after {
+  animation: none !important;
+  transition: none !important;
+}
+
+#stage {
+  position: relative;
+  overflow: hidden;
+}
