@@ -95,8 +95,7 @@
     s.querySelector('.chip').style.background = v;
     s.querySelector('.hex').textContent = v.toUpperCase();
   });
-  // Brand name from brand.css (strip the CSS string quotes).
-  $('#brand-name').textContent = root.getPropertyValue('--brand-name').trim().replace(/^["']|["']$/g, '');
+  $('#brand-name').textContent = window.motion.brand('name');
   const specs = [...document.querySelectorAll('.spec')];
 
   const rise = (el, t, start, dist = 60, dur = 0.7) => {

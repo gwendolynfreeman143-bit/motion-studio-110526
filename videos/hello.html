@@ -25,14 +25,13 @@
     border-radius: 5px;
     transform-origin: left center;
   }
-  #tag {
-    position: absolute; left: 0; right: 0; top: 690px;
+  #tag, #handle {
+    position: absolute; left: 0; right: 0;
     text-align: center;
-    font-family: var(--font-mono);
-    font-size: 30px;
-    color: var(--muted);
-    letter-spacing: 0.2em;
+    font-family: var(--font-body);
   }
+  #tag { top: 690px; font-size: 40px; color: var(--muted); }
+  #handle { top: 770px; font-size: 28px; font-weight: 600; letter-spacing: 0.08em; color: var(--accent); }
 </style>
 </head>
 <body>
@@ -44,16 +43,20 @@
     <span class="word accent">studio</span>
   </div>
   <div id="bar"></div>
-  <div id="tag">MOTION STUDIO · TEST 01</div>
+  <div id="tag"></div>
+  <div id="handle"></div>
 </div>
 <script>
   window.DURATION = 3;
   window.SIZE = [1920, 1080];
 
-  const { tween, ease } = window.motion;
+  const { tween, ease, brand } = window.motion;
   const words = [...document.querySelectorAll('.word')];
   const bar = document.getElementById('bar');
   const tag = document.getElementById('tag');
+  const handle = document.getElementById('handle');
+  tag.textContent = brand('tagline');
+  handle.textContent = brand('handle');
 
   window.render = (t) => {
     // Words rise in, staggered.
@@ -69,6 +72,9 @@
     // Tagline fades up.
     tag.style.opacity = tween(t, 1.3, 1.8, 0, 1);
     tag.style.transform = `translateY(${tween(t, 1.3, 1.8, 16, 0, ease.outCubic)}px)`;
+    // Handle follows.
+    handle.style.opacity = tween(t, 1.6, 2.1, 0, 1);
+    handle.style.transform = `translateY(${tween(t, 1.6, 2.1, 16, 0, ease.outCubic)}px)`;
     // Gentle push-in for the whole frame.
     document.getElementById('stage').style.transform =
       `scale(${tween(t, 0, 3, 1, 1.04, ease.linear)})`;

@@ -15,8 +15,10 @@
 }
 
 :root {
-  /* Name (read in videos via getComputedStyle(...).getPropertyValue("--brand-name")) */
+  /* Identity text (read in videos with motion.brand("name"), motion.brand("handle"), ...) */
   --brand-name: "Venus Rising";
+  --brand-handle: "@venusrising";
+  --brand-tagline: "Every whisper has a tale";
 
   /* Colors */
   --bg: #000000;      /* background: black */
