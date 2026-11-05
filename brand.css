@@ -1,17 +1,30 @@
 /* Brand tokens — edit these to restyle every video. */
+
+/* Fonts ship with the repo (fonts/), so renders work offline. Both are OFL-licensed Google Fonts. */
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("fonts/SpaceGrotesk-Variable.ttf") format("truetype");
+  font-weight: 300 700;
+  font-display: block;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("fonts/Inter-Variable.ttf") format("truetype");
+  font-weight: 100 900;
+  font-display: block;
+}
+
 :root {
   /* Colors */
-  --bg: #0e0f13;
-  --surface: #1a1c23;
-  --ink: #f4f1ea;
-  --muted: #8a8d98;
-  --accent: #ff5a36;
-  --accent-2: #3d7bff;
+  --bg: #000000;      /* background: black */
+  --ink: #ffffff;     /* text: white */
+  --muted: #b4b4b8;   /* muted: light gray */
+  --accent: #f0b429;  /* accent: gold */
 
-  /* Fonts (installed locally; fall back to system fonts elsewhere) */
-  --font-display: "Inter Display", "Inter", system-ui, sans-serif;
-  --font-body: "Inter", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  /* Fonts */
+  --font-display: "Space Grotesk", system-ui, sans-serif;  /* headlines */
+  --font-body: "Inter", system-ui, sans-serif;             /* body */
+  --font-mono: ui-monospace, "JetBrains Mono", monospace;  /* not a brand font; for code-style labels */
 }
 
 /* Shared frame setup: the stage fills the video exactly, nothing scrolls. */
